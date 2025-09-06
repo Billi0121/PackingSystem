@@ -15,4 +15,8 @@ def index(request):
 
 def group(request, slug):
     group = Group.objects.get(name=slug)
+    furniture = Furniture.objects.filter(Group=group)
+    context = {
+        'furniture': furniture,
+    }
     return render(request, 'packing/group.html')
