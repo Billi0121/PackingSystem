@@ -1,1 +1,45 @@
-{{ furniture.name }}
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ group.name }}</title>
+  <link rel="stylesheet" href="{% static 'packing/css/group.css' %}">
+</head>
+<body>
+
+  <header>
+    <h1>{{ group.name }}</h1>
+    <nav>
+      <a href="/">Главная</a>
+      <a href="/catalog/">Каталог</a>
+      <a href="#">О нас</a>
+      <a href="#">Контакты</a>
+    </nav>
+  </header>
+
+  <section class="group-hero">
+    <h2>{{ group.name }}</h2>
+    <p>{{ group.description }}</p>
+  </section>
+
+  <section class="furniture-list">
+    {% for furniture in furnitures %}
+    <div class="furniture-card">
+      <img src="{{ furniture.img.url }}" alt="{{ furniture.name }}">
+      <h3>{{ furniture.name }}</h3>
+      <p>{{ furniture.description }}</p>
+      <span class="price">{{ furniture.price }} сомони</span>
+    </div>
+    {% empty %}
+      <p class="empty">Пока нет мебели в этой категории.</p>
+    {% endfor %}
+  </section>
+
+  <footer>
+    © 2025 Мебельный Гарнитур. Все права защищены.
+  </footer>
+
+</body>
+</html>
