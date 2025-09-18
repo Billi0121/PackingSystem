@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: packing-system-service
+spec:
+  type: NodePort       # можно зайти снаружи
+  selector:
+    app: packing-system
+  ports:
+    - protocol: TCP
+      port: 8000       # порт внутри кластера
+      targetPort: 8000 # порт контейнера
+      nodePort: 30080  # порт на ноде
